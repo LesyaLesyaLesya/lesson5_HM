@@ -8,7 +8,11 @@
 #include <list>
 #include <stdlib.h>
 #include <time.h>
+#include <sstream>
 #include <deque>
+#include <map>
+#include <set>
+#include <unordered_set>
 #include <algorithm>
 #include <string_view>
 using namespace std;
@@ -25,24 +29,78 @@ template<template<typename, typename> class T, typename N, typename Tit>
 void Print(const T<N, Tit>& container)
 {
     copy(container.begin(), container.end(), ostream_iterator<N>{cout, " "});
+    cout << endl;
+    cout << endl;
+}
+
+template <typename AnyIt>
+void PrintUniqueWords(AnyIt beginIt, AnyIt endIt)
+{
+    unordered_set<string> us(beginIt, endIt);
+    copy(us.begin(), us.end(), ostream_iterator<string>(cout, " "));
 }
 void Zadanie1()
 {
     /*--------------------------------------------------
-   
+    Создать шаблонную функцию, которая принимает итераторы на начало и конец последовательности слов,
+    и выводящую в консоль список уникальных слов (если слово повторяется больше 1 раза, то вывести его надо один раз).
+    Продемонстрировать работу функции, передав итераторы различных типов.
     ----------------------------------------------------*/
+    vector<string> v{"kolya","vasya","lesya","kolya","mama","petya","misha","agata","misha","misha","kolya","asdadad","vasya"};
+    Print(v);
+
+    PrintUniqueWords(v.begin(), v.end());
+    
    
 
 };
 
 
-void Zadanie2()
+int Zadanie2()
 {
     /*--------------------------------------------------
-
+    Используя ассоциативный контейнер, напишите программу, которая будет считывать данные введенные пользователем
+    из стандартного потока ввода и разбивать их на предложения. Далее программа должна вывести пользователю все предложения,
+    отсортировав их по длине.
     ----------------------------------------------------*/
-   
+    cout << endl;
+    string s, s_out;
+    istringstream istr;
 
+    multimap<int,string> sentences;
+
+
+    while (getline(cin, s))
+    {
+        if (!s.empty())                                       
+        {
+            s_out += s;                            
+             
+            
+
+            /*while (true)
+            {
+                std::string sentence(std::move(getSentence(tempString))); // ищем предложение из сформированного потока данных
+                if (sentence.empty())
+                {
+                    break;                                                // прекращаем поиск, если нет ни одного найденного предложения
+                }
+                sentences.insert(std::move(sentence));                    // иначе сохраняем найденное предложение и продолжаем поиск другого
+            }*/
+        }
+
+        
+    }
+    istringstream input(s_out);
+    for (string tempStr; getline(input,tempStr, '.'); )
+    {
+        sentences.insert({ tempStr.length(),tempStr });
+    }
+
+    for_each(sentences.begin(), sentences.end(), [](pair<int, string> item) {cout << item.second << endl;});
+    system("pause");
+    return 1;
+        
 };
 
 
