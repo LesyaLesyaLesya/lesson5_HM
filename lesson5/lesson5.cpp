@@ -72,24 +72,10 @@ int Zadanie2()
 
     while (getline(cin, s))
     {
-        if (!s.empty())                                       
+        if (!s.empty())
         {
-            s_out += s;                            
-             
-            
-
-            /*while (true)
-            {
-                std::string sentence(std::move(getSentence(tempString))); // ищем предложение из сформированного потока данных
-                if (sentence.empty())
-                {
-                    break;                                                // прекращаем поиск, если нет ни одного найденного предложения
-                }
-                sentences.insert(std::move(sentence));                    // иначе сохраняем найденное предложение и продолжаем поиск другого
-            }*/
+            s_out += s;
         }
-
-        
     }
     istringstream input(s_out);
     for (string tempStr; getline(input,tempStr, '.'); )
